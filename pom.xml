@@ -14,11 +14,31 @@
     </properties>
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.bytedeco/javacv-platform -->
+
         <dependency>
             <groupId>org.bytedeco</groupId>
             <artifactId>javacv-platform</artifactId>
-            <version>1.5</version>
+            <version>1.5.7</version>
         </dependency>
+        <!-- Thanks for using https://jar-download.com -->
+
+        <dependency>
+            <groupId>com.github.sarxos</groupId>
+            <artifactId>webcam-capture-driver-javacv</artifactId>
+            <version>0.3.11</version>
+        </dependency>
+        <!-- Thanks for using https://jar-download.com -->
+
+        <dependency>
+            <groupId>org.bytedeco</groupId>
+            <artifactId>javacv</artifactId>
+            <version>1.5.7</version>
+        </dependency>
+        <!-- Thanks for using https://jar-download.com -->
+
+
+
+
 
 
         <!-- Additional dependencies required to use CUDA and cuDNN -->
