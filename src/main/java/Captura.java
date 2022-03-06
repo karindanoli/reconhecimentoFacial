@@ -40,18 +40,33 @@ public class Captura {
         //para tirar a foto
         camera.start();
 
-        //LINHA 1
+        CascadeClassifier detectorFace = new CascadeClassifier("src/main/resources/haarcascade_frontalface_alt.xml");
 
         // janela de preview ao inves de utilizar este codigo de gamma pode ser 1 ou nada
         CanvasFrame cFrame = new CanvasFrame ("Preview", CanvasFrame.getDefaultGamma() / camera.getGamma());
         Frame frameCapturado = null;
         //por meio desta imagemColorida que irá ser feito a deteccao do frame
-
+        Mat imagemColorida = new Mat();
 
         //Se a camera estiver capturando algo o código vai ser diferente de null e vai executar o codigo abaixo
         while ((frameCapturado = camera.grab()) != null){
             if (cFrame.isVisible()){
-                cFrame.showImage(frameCapturado);
+                imagemColorida = converteMat.convert(frameCapturado);
+                Mat imagemCinza = new Mat();
+                //passar a imagem para a escala de cinza para o programa trabalhar melhor
+                cvtColor(imagemColorida, imagemCinza, COLOR_BGRA2GRAY);
+                //armazena as faces detectadas nesta variavel
+                RectVector facesDetectadas = new RectVector();
+                //Passa a foto para faces detectadas e os outros são parametros de tamanho da face que pode ser detectada minimo e maximo
+                detectorFace.detectMultiScale(imagemCinza, facesDetectadas, 1.1, 1, 0, new Size(150,150), new Size(500,500));
+                for (int i=0; i< facesDetectadas.size(); i++){
+                    //fazer um retangulo por isso o rect
+                    Rect dadosFace = facesDetectadas.get(0);
+                    rectangle(imagemColorida, dadosFace, new Scalar(0,0,255,0));
+                }
+                if (cFrame.isVisible()) {
+                    cFrame.showImage(frameCapturado);
+                }
 
                 }
             }

@@ -36,11 +36,6 @@
         </dependency>
         <!-- Thanks for using https://jar-download.com -->
 
-
-
-
-
-
         <!-- Additional dependencies required to use CUDA and cuDNN -->
         <dependency>
             <groupId>org.bytedeco</groupId>
